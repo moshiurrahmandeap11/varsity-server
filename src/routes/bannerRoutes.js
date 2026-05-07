@@ -22,7 +22,6 @@ router.get("/:id", getSingleBanner);
 // Protected routes (require authentication)
 router.post(
     "/single", 
-    verifyToken, 
     (req, res, next) => {
         const upload = uploadSingle('banners', 'image');
         upload(req, res, (err) => {
@@ -40,7 +39,6 @@ router.post(
 
 router.post(
     "/multiple", 
-    verifyToken, 
     (req, res, next) => {
         const upload = uploadMultiple('banners', 'images', 10);
         upload(req, res, (err) => {
