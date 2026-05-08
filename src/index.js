@@ -9,6 +9,7 @@ const app = express();
 // import routes
 import users from "./routes/authRoutes.js";
 import bannerRoutes from "./routes/bannerRoutes.js";
+import noticeRoutes from "./routes/noticeRoutes/noticeRoutes.js";
 import uploadRoutes from "./routes/uploadRoutes.js";
 
 app.use(cors({
@@ -31,6 +32,7 @@ connectDB();
 app.use("/api/users", users);
 app.use("/api/upload", uploadRoutes);
 app.use("/api/banners", bannerRoutes);
+app.use("/api/notices", noticeRoutes);
 
 
 app.get("/", (req, res) => {

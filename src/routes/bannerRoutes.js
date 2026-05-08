@@ -8,10 +8,9 @@ import {
     getBanners,
     getSingleBanner,
     toggleBannerStatus,
-    updateBanner
+    updateBanner,
 } from "../controllers/bannerControllers.js";
 import { uploadMultiple, uploadSingle } from "../middleware/upload.js";
-import verifyToken from "../middleware/verifyToken.js";
 
 const router = Router();
 
@@ -21,59 +20,59 @@ router.get("/:id", getSingleBanner);
 
 // Protected routes (require authentication)
 router.post(
-    "/single", 
-    (req, res, next) => {
-        const upload = uploadSingle('banners', 'image');
-        upload(req, res, (err) => {
-            if (err) {
-                return res.status(400).json({
-                    success: false,
-                    message: err.message
-                });
-            }
-            next();
+  "/single",
+  (req, res, next) => {
+    const upload = uploadSingle("banners", "image");
+    upload(req, res, (err) => {
+      if (err) {
+        return res.status(400).json({
+          success: false,
+          message: err.message,
         });
-    }, 
-    createBanner
+      }
+      next();
+    });
+  },
+  createBanner,
 );
 
 router.post(
-    "/multiple", 
-    (req, res, next) => {
-        const upload = uploadMultiple('banners', 'images', 10);
-        upload(req, res, (err) => {
-            if (err) {
-                return res.status(400).json({
-                    success: false,
-                    message: err.message
-                });
-            }
-            next();
+  "/multiple",
+  (req, res, next) => {
+    const upload = uploadMultiple("banners", "images", 10);
+    upload(req, res, (err) => {
+      if (err) {
+        return res.status(400).json({
+          success: false,
+          message: err.message,
         });
-    }, 
-    createMultipleBanners
+      }
+      next();
+    });
+  },
+  createMultipleBanners,
 );
 
 router.put(
-    "/:id", 
-    verifyToken, 
-    (req, res, next) => {
-        const upload = uploadSingle('banners', 'image');
-        upload(req, res, (err) => {
-            if (err) {
-                return res.status(400).json({
-                    success: false,
-                    message: err.message
-                });
-            }
-            next();
+  "/:id",
+
+  (req, res, next) => {
+    const upload = uploadSingle("banners", "image");
+    upload(req, res, (err) => {
+      if (err) {
+        return res.status(400).json({
+          success: false,
+          message: err.message,
         });
-    }, 
-    updateBanner
+      }
+      next();
+    });
+  },
+  updateBanner,
 );
 
-router.delete("/:id", verifyToken, deleteBanner);
-router.post("/delete-multiple", verifyToken, deleteMultipleBanners);
-router.patch("/:id/toggle-status", verifyToken, toggleBannerStatus);
+router.delete("/:id", deleteBanner);
+router.post("/delete-multiple", deleteMultipleBanners);
+router.patch("/:id/toggle-status", toggleBannerStatus);
 
 export default router;
