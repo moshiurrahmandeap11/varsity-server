@@ -17,7 +17,7 @@ import galleryRoute from "./routes/galleryRoute/galleryRoute.js";
 
 app.use(
   cors({
-    origin: ["http://localhost:3000"],
+    origin: ["http://localhost:3000", "https://varsity-client.vercel.app"],
     credentials: true,
     methods: ["GET", "POST", "PUT", "DELETE", "PATCH", "OPTIONS"],
     allowedHeaders: [
