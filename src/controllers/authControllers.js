@@ -3,6 +3,7 @@ import bcrypt from "bcryptjs";
 import admin from "firebase-admin";
 import jwt from "jsonwebtoken";
 import { db } from "../database/db.js";
+import { ObjectId } from "mongodb";
 
 // Initialize Firebase Admin SDK
 const serviceAccount = {
