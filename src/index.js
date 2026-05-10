@@ -12,6 +12,8 @@ import bannerRoutes from "./routes/bannerRoutes.js";
 import noticeRoutes from "./routes/noticeRoutes/noticeRoutes.js";
 import uploadRoutes from "./routes/uploadRoutes.js";
 import socialRoutes from "./routes/socialRoutes/socialRoutes.js";
+import aboutRoute from "./routes/aboutRoute/aboutRoute.js";
+import galleryRoute from "./routes/galleryRoute/galleryRoute.js";
 
 app.use(
   cors({
@@ -41,6 +43,8 @@ app.use("/api/upload", uploadRoutes);
 app.use("/api/banners", bannerRoutes);
 app.use("/api/notices", noticeRoutes);
 app.use("/api/social", socialRoutes);
+app.use("/api/about", aboutRoute);
+app.use("/api/gallery", galleryRoute);
 
 app.get("/", (req, res) => {
   res.send("varsity server running rapidly");
